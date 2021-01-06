@@ -3,7 +3,9 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 /[Ll]ibrary/
+/2020game/[Ll]ibrary/
 /[Tt]emp/
+/2020game/[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/

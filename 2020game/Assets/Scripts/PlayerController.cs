@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float forwardForce = 10000f;
+    public float forwardForce = 500f;
+    public float jumpForce = 500f;
+    bool isGrounded = true;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -27,6 +29,20 @@ public class PlayerController : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             rb.AddForce(direction * forwardForce * Time.deltaTime);
-        }        
+        }      
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce);
+            isGrounded = false;
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
     }
 }
