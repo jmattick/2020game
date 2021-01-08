@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using System.Net;
 using System;
-//using System.IO;
 
 public class HandleAPIs : MonoBehaviour
 {
-    // string containing api url
-    public string url_base = "https://data.cdc.gov/resource/9mfq-cb36.json?state=";
+    // backup json data file
     public TextAsset jsonFile;
 
     // class to hold data about daily new cases
@@ -18,7 +15,6 @@ public class HandleAPIs : MonoBehaviour
         public string submission_date;
         public string state;
         public float new_case;
-
     }
 
     // class to hold list of DataPoint objects
@@ -30,10 +26,13 @@ public class HandleAPIs : MonoBehaviour
         // method to sort items by submission date
         public void SortByDate()
         {
+            // sort items
             items.Sort((a, b) => {
+                // extract numerical date
                 string date_a = a.submission_date.Substring(0, 10).Replace("-","");
                 string date_b = b.submission_date.Substring(0, 10).Replace("-", "");
 
+                // compare dates
                 if (date_a.CompareTo(date_b)>0)
                 {
                     return 1;
@@ -41,7 +40,6 @@ public class HandleAPIs : MonoBehaviour
                 {
                     return -1;
                 }
-
             });
         }
     }
@@ -49,24 +47,21 @@ public class HandleAPIs : MonoBehaviour
     // method to get data from API
     public DataList GetAPIData(string jsonString)
     {
-
-        // request url
-        // HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url_base + state);
-        //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        //StreamReader reader = new StreamReader(response.GetResponseStream());
-
-        // add field to store list and read response
-        //string jsonResponse = "{\"items\":" + reader.ReadToEnd() + "}";
+        // initalize fianl json string compatible with DataList Class
         string jsonResponse;
+
+        // if no external data
         if (jsonString == "")
         {
+            // load backup data from json file
             jsonResponse = "{\"items\":" + jsonFile.text + "}";
         } else
         {
+            // use provided json string
             jsonResponse = "{\"items\":" + jsonString + "}";
         }
         // convert json response to DataList object
-        DataList result = JsonUtility.FromJson<DataList>(jsonResponse);
-        return result;
+        return JsonUtility.FromJson<DataList>(jsonResponse);
+       
     }
 }

@@ -20,16 +20,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // get input information
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+
+        // calculate normalized direction of movement
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
 
-        //add forces
+        // move
         if (direction.magnitude >= 0.1f)
         {
             rb.AddForce(direction * forwardForce * Time.deltaTime);
         }      
+
+        // jump on space if player is grounded
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * jumpForce);
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // check if player is grounded
         if(collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
