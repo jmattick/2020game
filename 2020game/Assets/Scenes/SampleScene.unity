@@ -188,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url_base: https://data.cdc.gov/resource/9mfq-cb36.json?state=
+  dev: 1
+  jsonFile: {fileID: 4900000, guid: 7ab3446485df3fc47a00fe40f3f89a0f, type: 3}
 --- !u!1 &56284651
 GameObject:
   m_ObjectHideFlags: 0
