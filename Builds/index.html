@@ -6,10 +6,27 @@
     <title>Unity WebGL Player | 2020game</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script type="text/javascript">
+
+     
+    </script>
+
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Builds.json", {onProgress: UnityProgress});
+
+
+      var getCovidData = function(st) {
+        var base_url = "https://data.cdc.gov/resource/9mfq-cb36.json?state=";
+     
+        fetch(base_url+st)
+            .then(res => res.json())
+            .then((out) => {
+                unityInstance.SendMessage('Game Manager', 'SetJsonData', JSON.stringify(out));
+        }).catch(err => console.error(err));
+      }
+
     </script>
   </head>
   <body>

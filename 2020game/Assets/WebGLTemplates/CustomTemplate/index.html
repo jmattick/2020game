@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | 2020game</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script type="text/javascript">
+
+     
+    </script>
+
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Builds.json", {onProgress: UnityProgress});
+
+
+      var base_url = "https://data.cdc.gov/resource/9mfq-cb36.json?state=";
+      var state = "IL";
+
+      fetch(base_url+state)
+          .then(res => res.json())
+          .then((out) => {
+              unityInstance.SendMessage('Markers', 'SetJsonData', out.slice(0,20));
+              console.log(out.slice(0,20));
+      }).catch(err => console.error(err));
+
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">2020game</div>
+      </div>
+    </div>
+  </body>
+</html>

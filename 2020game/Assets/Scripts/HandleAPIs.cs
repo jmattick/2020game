@@ -49,19 +49,38 @@ public class HandleAPIs : MonoBehaviour
     {
         // initalize fianl json string compatible with DataList Class
         string jsonResponse;
-
+        DataList res;
         // if no external data
-        if (jsonString == "")
+        if (jsonString == "[]")
         {
-            // load backup data from json file
-            jsonResponse = "{\"items\":" + jsonFile.text + "}";
-        } else
-        {
-            // use provided json string
-            jsonResponse = "{\"items\":" + jsonString + "}";
+            res = LoadBackupData();
         }
+        else
+        {
+            try
+            {
+                // use provided json string
+                jsonResponse = "{\"items\":" + jsonString + "}";
+                // convert json response to DataList object
+                res = JsonUtility.FromJson<DataList>(jsonResponse);
+            }
+            catch (System.ArgumentException ex)
+            {
+                Debug.Log(ex);
+                res = LoadBackupData();
+            }
+        }
+                
+        return res;
+    }
+
+    // method loads data from backup json file
+    public DataList LoadBackupData()
+    {
+        // load backup data from json file
+        string jsonResponse = "{\"items\":" + jsonFile.text + "}";
         // convert json response to DataList object
-        return JsonUtility.FromJson<DataList>(jsonResponse);
-       
+        DataList res = JsonUtility.FromJson<DataList>(jsonResponse);
+        return res;
     }
 }

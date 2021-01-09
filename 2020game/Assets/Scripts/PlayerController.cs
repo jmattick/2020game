@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
         // calculate normalized direction of movement
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-
         // move
         if (direction.magnitude >= 0.1f)
         {

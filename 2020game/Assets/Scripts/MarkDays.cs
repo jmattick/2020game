@@ -34,6 +34,9 @@ public class MarkDays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      
+        jsonData = GameManager.Instance.GetJsonData();
+        Debug.Log(jsonData);
         // get COVID data from API 
         data = GetComponent<HandleAPIs>().GetAPIData(jsonData);
         // sort data by submission date
@@ -98,10 +101,6 @@ public class MarkDays : MonoBehaviour
         }
     }
 
-    // method to set jsondata to be called from Javascript
-    public void SetJsonData(string jsonString)
-    {
-        jsonData = jsonString;
-    }
+
 
 }
