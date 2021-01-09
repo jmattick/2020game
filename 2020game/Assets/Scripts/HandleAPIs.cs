@@ -61,6 +61,8 @@ public class HandleAPIs : MonoBehaviour
             {
                 // use provided json string
                 jsonResponse = "{\"items\":" + jsonString + "}";
+                Debug.Log("try get api data");
+                Debug.Log(jsonResponse);
                 // convert json response to DataList object
                 res = JsonUtility.FromJson<DataList>(jsonResponse);
             }

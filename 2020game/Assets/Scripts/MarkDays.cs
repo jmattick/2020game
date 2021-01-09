@@ -36,6 +36,7 @@ public class MarkDays : MonoBehaviour
     {
       
         jsonData = GameManager.Instance.GetJsonData();
+        Debug.Log("json data before api handler script");
         Debug.Log(jsonData);
         // get COVID data from API 
         data = GetComponent<HandleAPIs>().GetAPIData(jsonData);

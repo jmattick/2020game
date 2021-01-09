@@ -36,16 +36,25 @@ public class GameManager : MonoBehaviour
     // method called on awake
     private void Awake()
     {
-        _instance = this;
-        covidData = "[]"; // set inital value for data
-        RequestJS("IL"); // initially request data from Illinois
-        DontDestroyOnLoad(this);
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this);
+        } else
+        {
+            _instance = this;
+            covidData = "[]"; // set inital value for data
+            RequestJS("CA"); // initially request data from Illinois
+            DontDestroyOnLoad(this);
+        }            
     }
 
     // method to set jsondata to be called from Javascript
     public void SetJsonData(string jsonString)
     {
+        Debug.Log(jsonString);
         covidData = jsonString;
+        Debug.Log("after setjsondata");
+        Debug.Log(covidData);
     }
 
     public string GetJsonData()
@@ -58,6 +67,8 @@ public class GameManager : MonoBehaviour
     {
         // if run in WebGL build call JS plugin method
 #if UNITY_WEBGL && !UNITY_EDITOR
+        Debug.Log("requestJS");
+        Debug.Log(covidData);
         RequestUnityJS(query);
 #endif
     }
