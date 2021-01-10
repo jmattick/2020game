@@ -37,9 +37,9 @@ public class MarkDays : MonoBehaviour
     void Start()
     {
       
+        // get data
         jsonData = GameManager.Instance.GetJsonData();
-        Debug.Log("json data before api handler script");
-        Debug.Log(jsonData);
+        
         // get COVID data from API 
         data = GetComponent<HandleAPIs>().GetAPIData(jsonData);
         // sort data by submission date
@@ -64,12 +64,6 @@ public class MarkDays : MonoBehaviour
             // add formatted label to markerLabels
             markerLabels.Add(data.items[i].submission_date.Substring(0,10));
         }
-
-        // loop through each item in to set new_cases equal to the fraction of new cases over max cases
-        //for (int i = 1; i < num_days; i++)
-        //{
-        //    data.items[i].new_case = data.items[i].new_case / max_cases;
-        //}
 
         // length of track
         float gameLength = end.transform.position.z - start.transform.position.z;
