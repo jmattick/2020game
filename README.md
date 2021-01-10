@@ -1,10 +1,10 @@
-# 2020game
+# COVID Data Game
 
 [Play Game](https://jmattick.github.io/2020game/Builds/index.html)
 
 This project was created for the [Don't Panic!](https://dontpanic.cs.luc.edu/) Hackathon by Jessica Mattick. 
 Jessica is a masters student in the computer science department at Loyola University Chicago 
-graduating in May.
+graduating this spring.
 
 ### Abstract
 
