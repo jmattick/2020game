@@ -14,6 +14,8 @@ public class MarkDays : MonoBehaviour
     public Transform start;
     // ending point object
     public Transform end;
+    // state marker object
+    public TextMeshPro stateMarker;
     // enemy prefab
     public Transform enemy;
     // maximum number of objects per data point
@@ -44,6 +46,9 @@ public class MarkDays : MonoBehaviour
         data.SortByDate();
         // count number of days in dataset
         num_days = data.items.Count;
+
+        // change state marker text
+        stateMarker.text = data.items[0].state;
 
         // initialize list to hold markers or dates to be used on track
         markerLabels = new List<string>();

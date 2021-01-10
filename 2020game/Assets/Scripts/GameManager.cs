@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     // string to hold covid json string from api
     private string covidData;
 
+    // string to hold current us state
+    private string usState;
+
     // initialize Javascript method if run in WebGL build
 #if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]
@@ -32,6 +35,18 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+
+    // us state getter
+    public string GetUSState()
+    {
+        return usState;
+    }
+
+    // us state setter
+    public void SetUSState(string st)
+    {
+        usState = st;
+    }
     
     // method called on awake
     private void Awake()
@@ -43,7 +58,7 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             covidData = "[]"; // set inital value for data
-            RequestJS("CA"); // initially request data from Illinois
+            RequestJS(usState); // initially request data from Illinois
             DontDestroyOnLoad(this);
         }            
     }
