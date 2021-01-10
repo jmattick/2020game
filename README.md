@@ -2,6 +2,10 @@
 
 [Play Game](https://jmattick.github.io/2020game/Builds/index.html)
 
+This project was created for the [Don't Panic!](https://dontpanic.cs.luc.edu/) Hackathon by Jessica Mattick. 
+Jessica is a masters student in the computer science department at Loyola University Chicago 
+graduating in May.
+
 ### Abstract
 
 The goal of this project is to combine data visualization and game development. 
@@ -30,8 +34,6 @@ COVID-19 Data from CDC:
 Unity Assets: 
 
 - [TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
-
-### Video
 
 ### Development Process
 

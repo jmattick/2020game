@@ -174,7 +174,7 @@ MonoBehaviour:
   end: {fileID: 2081363625}
   stateMarker: {fileID: 1356554035}
   enemy: {fileID: 5892290535619730733, guid: 06fc97a19ac899e4bb2377dd41f916c9, type: 3}
-  maxObjects: 9.77
+  maxObjects: 20
   jsonData: 
 --- !u!114 &49195963
 MonoBehaviour:
